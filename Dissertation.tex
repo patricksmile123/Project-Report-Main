@@ -1,0 +1,76 @@
+\documentclass[pdftex,10pt,a4paper,oneside]{report}
+
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage{tabularx}
+\usepackage{ltablex}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\fancyhf{}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.2pt}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{lightgray!20}, % Background color
+    commentstyle=\color{green},           % Comment style
+    keywordstyle=\color{blue},            % Keyword style
+    numberstyle=\tiny\color{gray},        % Line number style
+    stringstyle=\color{red},              % String style
+    basicstyle=\ttfamily\footnotesize,    % Basic font style
+    breaklines=true,                      % Automatic line breaking
+    numbers=left,                         % Line numbers on the left
+    numbersep=5pt,                        % Distance of line numbers from the code
+    frame=single,                         % Adds a frame around the code
+    captionpos=b,                         % Position of the caption (bottom)
+    showspaces=false,                     % Don't show spaces
+    showstringspaces=false,               % Don't show spaces in strings
+    showtabs=false,                       % Don't show tabs
+    tabsize=2                             % Tab size
+}
+\lstset{
+    style=mystyle,
+    morekeywords={function, var, let, const, def}, % Add more keywords if needed
+}
+\lstdefinestyle{python}{
+    language=Python,
+    style=mystyle
+}
+
+\lstdefinestyle{javascript}{
+    language=JavaScript,
+    style=mystyle
+}
+
+% Styles can be Sonny, Lenny, Glenn, Conny, Rejne, Bjarne and Bjornstrup
+\usepackage[Glenn]{fncychap} 
+
+\begin{document}
+
+\include{Preamble/Frontpage}
+\include{Preamble/Abstract}
+%\include{Preamble/Dedication} % Comment out for UG dissertations
+%\include{Preamble/Declarations} % Comment out for UG dissertations
+\include{Preamble/Contents}
+\include{Preamble/ChapterMods}
+
+\include{Chapter1/Chapter1}
+\include{Chapter2/Chapter2}
+\include{Chapter3/Chapter3}
+\include{Chapter4/Chapter4}
+\include{Chapter5/Chapter5}
+\include{Chapter6/Chapter6}
+
+
+\bibliographystyle{abbrv}
+\bibliography{bibliography}
+
+\include{Appendices/Appendices}
+
+\end{document}
