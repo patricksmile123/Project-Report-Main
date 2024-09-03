@@ -5,9 +5,154 @@ Another significant consideration was React's status as one of the most widely u
 A different framework was considered for the application's backend. However, after conducting research, it was determined that switching to Django would not offer enough challenges to significantly contribute to personal growth and development. Conversely, transitioning to an entirely different programming language was deemed too daunting, especially when concurrently learning JavaScript, React, and CSS.
 The website's planned design also required many database calls. The database would store guesses, answers, and user data, just to name a few. For this approach to web development, SQLAlchemy seemed appropriate. Using the ORM style of SQL calls gave the ability to interact with the database in a Pythonic manner and let the calls and insertion of data be weaved into the code, as almost every call to the backend required some call to the database.
 
+\section{Database}
+\begin{figure}[h] % 'h' means 'here' - places the figure where it's defined
+    \centering
+    \includegraphics[width=\textwidth]{Database_Schema_Diagram.png} % Replace with your image file
+    \caption{Database Schema Diagram}
+    \label{fig:example}
+\end{figure}
+The database schema illustrates the system designed to handle both Wordle with no login and The Gauntlet
+\subsection{Transient Mode (Wordle with no login)}
+Two main tables are used in the transient mode: transientGames and transientWordleGuess.
+\begin{itemize}
+    \item transientGames
+        \begin{itemize}
+        \item gameId: A unique identifier for each game played.
+        \item startTime and endTime: Timestamp fields that record when the game started and ended.
+        \item Outcome: Stores the outcome of the game played.
+        \item Answer: Stores the correct answer of the game.
+        \item Score: Stores how well the user did in the game.
+        \end{itemize}
+    \item transientWordleGuess
+        \begin{itemize}
+        \item guessId: A unique id for each guess.
+        \item gameId: A foreign key that links each guess to the corresponding game in the transientGames table.
+        \item Guess: Stores the players guess.
+        \item guessTime: Stores the time when the player guesses
+        \end{itemize}
+    \end{itemize}
+    
+\subsection{The Gauntlet}
+\begin{itemize}
+\item users
+    \begin{itemize}
+    \item userId: Primary key that identifies each user.
+    \item firstName, lastName, username, passwordHash: All fields that store personal information of each user.
+    \end{itemize}
+\item games
+    \begin{itemize}
+    \item gameId: Primary key that identifies each user.
+    \item userId: A foreign key which links the game to a specific user.
+    \item startTime and endTime: Timestamps that indicate the time of the first guess and the time of the final guess.
+    \item outcome: Stores the result of the game.
+    \item answer: Stores the correct answer for the game.
+    \item Score: stores the score achieved by the user.
+    \end{itemize}
+\item wordleGuess
+    \begin{itemize}
+    \item guessId: Primary key that identifies the guess.
+    \item gameId: A foreign key that links the guess to the corresponding game in the games table.
+    \item guess: stores the guess made by a user.
+    \item guessTime: Timestamps when the guess was made.
+    \end{itemize}
+\item sharedGame
+    \begin{itemize}
+    \item sharedGameId: The primary key for instances of a shared game.
+    \item uuid: Stores the unique identifier of each shared game.
+    \item answer: The correct answer for the shared game.
+    \end{itemize}
+\item userAchievements
+    \begin{itemize}
+    \item id: The primary key for the user achievements table.
+    \item userId: The foreign key that links achievements to a specific user.
+    \item achievementId: A foreign key that links to a specific achievement on the achievement table.
+    \item dateAchieved: The date when the achievement was earned by the user.
+    \end{itemize}
+\item achievements
+    \begin{itemize}
+    \item achievementId: The primary key for the achievements table.
+    \item name: The name of the achievement
+    \item requirement: The criteria that needs to be met to earn the achievement.
+    \end{itemize}
+\end{itemize}
+
+\section{Unit Testing}
+In this project, unit tests were implemented for key components across both the front end and back end. The backend unit tests were written using the unittest framework in Python, focusing on the application's core logic and APIs, such as the Wordle game logic and user authentication mechanisms. For example, the TestParseResult class in testServer.py contains several test cases that verify the correctness of the parseResult function, ensuring that it accurately evaluates the user's guesses against the correct Wordle answer.
+
+\begin{lstlisting}[style=python, caption={The parseResult functions unit tests}]
+class TestParseResult(unittest.TestCase):
+    def test_all_correct(self):
+        guess = "apple"
+        answer = "apple"
+        expected_result = ['correct', 'correct', 'correct', 'correct', 'correct']
+        self.assertEqual(parseResult(guess, answer), expected_result)
+
+    def test_some_present(self):
+        guess = "apple"
+        answer = "apply"
+        expected_result = ['correct', 'correct', 'correct', 'correct', 'absent']
+        self.assertEqual(parseResult(guess, answer), expected_result)
+
+    def test_some_absent(self):
+        guess = "apple"
+        answer = "quick"
+        expected_result = ['absent', 'absent', 'absent', 'absent', 'absent']
+        self.assertEqual(parseResult(guess, answer), expected_result)
+
+    def test_mixed(self):
+        guess = "apple"
+        answer = "plead"
+        expected_result = ['present', 'present', 'absent', 'present', 'present']
+        self.assertEqual(parseResult(guess, answer), expected_result)
+\end{lstlisting}
+
+Similarly, the front end unit tests were implemented using the @testing-library/react and jest frameworks, ensuring that the React components behave as expected under various conditions. Components such as Leaderboard, Achievements, and Wordle were tested. For instance, the Achievements.test.js file includes tests that simulate user interactions and validate that achievements are correctly fetched and displayed based on the user's progress. These tests help ensure that the front end functions correctly in isolation and integrates smoothly with the backend services.
+
+\begin{lstlisting}[style=python, caption={Achievement frontend unit testing}]
+describe('Achievements Component', () => {
+    const mockUser = { token: 'mock-token' };
+    beforeEach(() => {
+        global.fetch = jest.fn();
+    });
+    afterEach(() => {
+        jest.resetAllMocks();
+    });
+    it('fetches and displays achievements', async () => {
+        const mockUserAchievements = ['Achievement 1'];
+        const mockAllAchievements = ['Achievement 1', 'Achievement 2'];
+        fetch.mockImplementationOnce(() =>
+            Promise.resolve({
+                ok: true,
+                json: () => Promise.resolve(mockUserAchievements),
+            })
+        );
+        fetch.mockImplementationOnce(() =>
+            Promise.resolve({
+                ok: true,
+                json: () => Promise.resolve(mockAllAchievements),
+            })
+        );
+        await act(async () => {
+            render(<Achievement user={mockUser} />);
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Achievement 1')).toBeInTheDocument();
+            expect(screen.getByText('Achievement 2')).toHaveClass('not-achieved');
+        });
+    });
+    it('logs missing token', () => {
+        const mockUserWithoutToken = {};
+        console.log = jest.fn();
+        render(<Achievement user={mockUserWithoutToken} />);
+        expect(console.log).toHaveBeenCalledWith('No token available');
+    });
+});
+\end{lstlisting}
+
 \section{Components}
 \subsection{App Structure}
-\begin{lstlisting}[style=javascript, caption={The router function for the app structure"}]
+\begin{lstlisting}[style=python, caption={The router function for the app structure}]
 <Routes>
 {!!(user.username) && <>
     <Route path="/wordle" element={<Wordle user={user} />} />
@@ -62,7 +207,7 @@ The solution to the first issue was very similar to what is done in the app stru
 The answer to creating a breadcrumb is using the useLocation library provided by React. Each time the component mounts, a LocationProvider constant is created and passed to the navbar. A CSS class then adjusts the button's colour depending on the location.
 
 \subsection{Wordle Frontend}
-\begin{lstlisting}[style=javascript, caption={The loop that updates the results when they are received so they can be placed in the JSX}]
+\begin{lstlisting}[style=python, caption={The loop that updates the results when they are received so they can be placed in the JSX}]
 setResult(data.map(previousGuess => {
     let tempData = {
     }
@@ -124,7 +269,7 @@ The win/loss state is also created using the backend. Each guess increments the 
 The front end of achievements is a table formed from the two JSON objects returned from the backend. When the component is mounted, two separate backend calls are made. These backend calls are separate to pull a list of all the achievements, and then a call is made to send which achievements a user has received. It is then indexed in alphabetical order. The colour, which indicates whether you have received the achievement, is changed depending on which call the achievement came from. 
 
 \subsection{Achievements Backend}
-\begin{lstlisting}[style=python, caption={The achievement_getter function.}]
+\begin{lstlisting}[style=python, caption={The achievementGetter function.}]
 @app.route('/api/achievement_getter', methods=['GET'])
 def achievement_getter():
     authoHeader = request.headers.get('authorization')
