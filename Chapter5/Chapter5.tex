@@ -26,10 +26,55 @@ All users had access to both websites and were prompted to use them as much as t
 
 As expected, Wordle had no features, and The Gauntlet had roughly the same number of users, with the Gauntlet at 34 and Wordle at 33 over the seven days. While the website was only sent to twenty people, it's apparent that some users sent the website to others, so it is not unexpected that there are a few more users. Interestingly, on the first day of the experiment, two more users used Wordle over the Gauntlet. 
 
-After the first day, usage sharply declines. This is expected with games such as this, as shown by Mistplay, a company that focuses on a loyalty reward system for gamers using its suite of games. Mistplay released an article showing the retention rates of its games, and even on the first day, it retains only 30 percent of the users who try the application(Cite article here). On the third day, The Gauntlet's user numbers stabilised, maintaining a user base of five to seven users daily, with an uptick on Saturday to eleven users. Wordle, by comparison, on the third day, had stabilised to a user base of two to four, with an uptick on Saturday of a user base of five. These increases during the weekend are likely due to users playing more games on a weekend rather than a weekday (Cite article here). From this data, it is apparent that the users have tended more to use The Gauntlet over Wordle with no login in terms of active users each day.
+\begin{figure}[h] % 'h' means 'here' - places the figure where it's defined
+    \centering
+    \includegraphics[width=\textwidth]{Number of Active Users Gauntlet.png} % Replace with your image file
+    \caption{Graph of active users during the experiment on both web apps}
+    \label{fig:example}
+\end{figure}
+
+After the first day, usage sharply declines. This is expected with games such as this, as shown by Mistplay, a company that focuses on a loyalty reward system for gamers using its suite of games. Mistplay released an article showing the retention rates of its games, and even on the first day, it retains only 30 percent of the users who try the application\cite{mistplay2024}. On the third day, The Gauntlet's user numbers stabilised, maintaining a user base of five to seven users daily, with an uptick on Saturday to eleven users. Wordle, by comparison, on the third day, had stabilised to a user base of two to four, with an uptick on Saturday of a user base of five. These increases during the weekend are likely due to users playing more games on a weekend rather than a weekday (Cite article here). From this data, it is apparent that the users have tended more to use The Gauntlet over Wordle with no login in terms of active users each day.
 
 Another aspect in which The Gauntlet has outperformed Wordle with no login web app is user engagement. Over the seven days that the experiment lasted, Wordle, with no login, had an average engagement time of 1 minute and 44 seconds. Conversely, The Gauntlet had an average engagement time of 10 minutes and 54 seconds. A part of this increase can likely be accredited to users having to spend longer to solve a longer. Also, users will be more likely to play multiple games in a single session to improve their leaderboard rating or attempt to attain an achievement. 
 
+\begin{figure}[h] % 'h' means 'here' - places the figure where it's defined
+    \centering
+    \includegraphics[width=\textwidth]{Engagement_Time.png} % Replace with your image file
+    \caption{Average Engagement time each day for both web apps}
+    \label{fig:example}
+\end{figure}
+
+\clearpage
+
 Google Analytics also tracks the number of "events" triggered on a website. An "event" occurs whenever a user interacts with the website in any way, whether they change pages, make a guess, or change the website's state. Throughout the experiment, Google Analytics tracked 304 events on the Wordle without login, while The Gauntlet had 1500. It should be pointed out that this may not be the strongest comparison between the two websites, as The Gauntlet has many more events to trigger over Wordle with no login. Looking at the database for overall games, 191 games were played on The Gauntlet, while only 40 games were played on Wordle with no login. 
 
+\begin{figure}[h] % 'h' means 'here' - places the figure where it's defined
+    \centering
+    \includegraphics[width=\textwidth]{Event_count_per_day.png} % Replace with your image file
+    \caption{Event Count each day for both web apps}
+    \label{fig:example}
+\end{figure}
+
 Overall, it is clear that The Gauntlet has better metrics in every aspect compared to Wordle with no login. While it is hard to show in the data what aspects of The Gauntlet increased user retention the most, a general idea can be formed by the user satisfaction as user satisfaction is shown to be a direct indicator of user retention in features (Cite StumbleUpon article). The share feature seems to have had little effect due to unclear signposting of what the feature did and users not thinking it added much value to the overall web app, while leaderboards seem to be the retention technique with the greatest effect, achievements also being a valuable addition to retention.
+\clearpage
+\section{Requirements Met}
+Now that The Gauntlet has been tested and evaluated by users and data metrics, it's pertinent that the functional and non-functional requirements are checked to see if it has reached its desired state. Most requirements are met, so this section will look at those that weren't.
+
+\begin{figure}[h] % 'h' means 'here' - places the figure where it's defined
+    \centering
+    \includegraphics[width=\textwidth]{Requirements_Met.png} % Replace with your image file
+    \caption{Graph of requirements met.}
+    \label{fig:example}
+\end{figure}
+
+
+\begin{itemize}[leftmargin=*, label=\textbullet]
+    \item \textbf{Have an option to suggest achievements} This was originally conceptualised as an offering so that users could suggest achievements in a submission box to better understand how the achievement section could be improved. When prototyping this component, it harmed the aesthetics of the achievements page greatly for something no longer believed to add too much value to the project, as users were generally messaging the developer personally to suggest changes about all aspects of the website. In the future, something like this could be added as a separate page to invite suggestions on changes to any part of the website, as personal messages about improving the site to the developer directly are not scalable enough to consider all users' opinions.
+
+    \item \textbf{Layout should match the qwerty layout} This functional requirement was only attempted later in development when dealing with fixes and smaller additions. When attempting to add this requirement, it created large issues on the phone version of the web application where the keyboard would take up an amount of the screen, which meant users could not fully see the game they were playing. In future works, it should be possible to achieve this requirement, and this functionality was just left unfixed due to time constraints.
+
+    \item \textbf{Have guesses be checked against a comprehensive English dictionary}
+    During the development of the web application, many different large libraries of English words were used to check that users' words were valid guesses for Wordle. The issue that was raised by users when they eventually started using the web application was that these libraries invalidated words that should be validated. Eventually, this feature was scrapped to prevent users from being frustrated with invalid guesses. There must be a library large enough to fix this issue, but one that had open access was not found during development. 
+
+
+\end{itemize}

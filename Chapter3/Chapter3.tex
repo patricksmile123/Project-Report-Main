@@ -9,38 +9,38 @@
     \caption{Kanban Board partway through production}
     \label{fig:example}
 \end{figure}
-While development was only done by one person, it felt pertinent to have a methodology to use while components were in production. For this, a Kanban approach was used, using a web application called Miro. A project board with an essential to-do, in-progress, and finished workflow was created. The workflow limit was two, so there would only be that many in the in-progress swim lane at one time. 
+While development was only done by one person, it was pertinent to have a methodology to use while components were in development. For this, a Kanban approach was used,\cite{Toyota2021} using a web application called Miro. A project board with an essential to-do, in-progress, and finished workflow was created.\cite{Miro2024} The workflow limit was two, so there would only be that many in the in-progress swim lane simultaneously. 
 
-Using this approach allowed the ability to focus on vertical slices of the product each time, which works in tandem with React's component approach to building functioning web applications.
+This approach allowed the ability to focus on vertical slices of the product each time, which works in tandem with React's component approach to building functioning web applications and creates vertical slices of incremental value.\cite{Sarrion2023}
 
 \section{Goals and Approach}
-Before starting development entirely, particularly on the web application's retention techniques, I interviewed a participant in a later experiment. The main issue that I wanted to solve with this interview was to understand what would make players want to return to a Wordle application and what made them leave in the first place. I also wanted to establish what kind of user retention techniques would make it natural for the user to be added to a daily game genre of web application.
+A participant in the later experiment was interviewed before starting development entirely, particularly on the web application's retention techniques. The main issue that needed to be solved with this interview was to understand what would make players want to return to a Wordle application and what made them leave in the first place. It was also important to establish what kind of user retention techniques would make it natural for the user to be added to a daily game genre of web application.
 
 This user was previously an avid player of Wordle when it was first released but had slowly stopped playing. He reasoned that he got ‘tired’ of playing the same thing daily, especially when he often found that he would always find the answer. He also found that after a certain amount of time, people stopped sending the emoji grid, showing users their daily score. 
 
-While it is helpful to get ideas from users, sometimes a web app will implement a feature that a user was unaware they would want until it was implemented. That said, the user was asked out of a list of the most appropriate retention techniques. 
+While it is helpful to get ideas from users, sometimes a web application implements a feature that a user was unaware they would want until it was implemented. The user was presented with a list of retention techniques and asked to select their preferred option.
 
-Retention techniques were considered, such as a daily reward schedule, where consistent logins would grant rewards. For Wordle, this would take the form of if a user had logged in three days in a row, the third day would give them the first letter on their first guess, allowing for a higher chance of a better score. The user was against this idea as they already found Wordle too easy and thought that this would apply too much pressure for a user to log in daily. 
+Different retention techniques, such as a daily reward schedule, were considered, where consistent logins would grant rewards. For Wordle, this would take the form of if a user had logged in three days in a row, the third day would give them the first letter on their first guess, allowing for a higher chance of a better score. The user was against this idea as they already found Wordle too easy and thought that this would apply too much pressure for a user to log in daily. 
 
 The user thought that the leaderboard was ideal as it eliminated having to share the emoji grid and allowed users to see their average score throughout the day. Having achievements to strive for was also believed to be appropriate and unintrusive while still being an enjoyable way to want to play more.
 
-The web app now also uses increased functionality, such as longer-length words to guess and the ability to share your previous word with a user. These were not decided upon until later, but after a brief conversation back and forth when this functionality's development started, they deemed them both appropriate additions. 
+The Gauntlet now also uses increased functionality, such as longer-length words to guess and the ability to share your previous word with a user. These were not decided upon until later, but after a brief conversation, the user deemed them both appropriate additions. 
 
 With the information collected in the Literature Review and initial conversations with a participant about what retention techniques are appropriate and interesting to add to the daily game genre of web application development, we can now move forward with a few goals in mind.
 
-Focusing on a social aspect is a strong idea, as this was brought up when asking a user and in the scholarship. This, taking the form of a leaderboard, means that the user will not have to go out of their way to send their ‘emoji grid’ to other users. It will also add a competitive nature to give something to strive for. The creation of achievements also seems to be appropriate. This is a primary way to retain users; they will not continue using the application if they don't feel challenged. The increased functionality will give users more reason to return to the web application while increasing the challenge with the WordleN feature. A new way of sociability will also be tested, such as the ability to share a user's previous game. Hopefully, this will encourage users to talk and share about the web application, leading to increased retention for a longer time. This will take the form of the following design goals for each component:
+Focusing on a social aspect is a strong idea, as this was brought up when asking a user and in the scholarship. This, taking the form of a leaderboard, means that the user will not have to go out of their way to send their ‘emoji grid’ to other users. It will also add a competitive nature to give something to strive for. The creation of achievements also seems to be appropriate. This is a primary way to retain users; they will not continue using the application if they don't feel challenged. The increased functionality will give users more reason to return to the web application while increasing the challenge with the WordleN feature. A new way of sociability will also be tested, with the ability to share a user's previous game. Hopefully, this will encourage users to talk and share about the web application, leading to increased retention over a longer period. This will take the form of the following design goals for each component:
 
 \subsection{Wordle}
-First and foremost, for the web app to test out these retention techniques, we must have a game to test it around. Wordle is the most obvious choice as it is the originator or the site that popularised the daily game genre of web apps. I will parity this paper's web app with the original Wordle game. Since Wordle is already a popular game, I want to ensure that the quality of a new game I create doesn't influence whether people enjoy the web app. I will ask if people were tired of Wordle before using the web app to determine if that influenced how much they played. The only core difference between my web app and Wordle will be that people can play more than one game a day.
+First and foremost, for the web app to test out these retention techniques, we must have a game to test it around. Wordle is the most obvious choice as it is the originator or the site that popularised the daily game genre of web applications. A level of parity will be attempted between The Gauntlet and Wordle's main features. Since Wordle is already a popular game, this will ensure that the quality of a theoretical new game created doesn't influence whether people enjoy the web app. It will be asked if people were tired of Wordle before using the web app to determine if that influenced how much they played. The only core difference between The Gauntlet and Wordle will be that people can play more than one game daily.
 
 \subsection{Leaderboard}
-Instead of having users share their scores on a third-party social media platform such as Twitter, which, while excellent for player acquisition, has little effect on user retention, The web application will implement a Leaderboard page where users will be ranked primarily on their average wordle score but if players happen to have the same average score the ranking will be decided on their average time spent on a completed wordle puzzle. 
+Instead of having users share their scores on a third-party social media platform such as Twitter, which, while excellent for player acquisition, has little effect on user retention, the web application will implement a Leaderboard page where users will be ranked primarily on their average Wordle score. If players happen to have the same average score, the ranking will be decided on their average time spent on a completed Wordle puzzle. 
 
 \subsection{Achievements}
-The web application will also implement an achievement system. While the achievements are somewhat rudimentary at this time, with further time invested in more features, a fleshed-out version of the system that will reward players for engaging with all aspects of the web application can be implemented. Users will be able to see their incomplete achievements, which will give them something to aspire to and increase their drive to continue engaging with the game.
+The web application will also implement an achievement system. While the achievements are somewhat rudimentary, a fleshed-out version of the system can be implemented with further time invested in more features that will reward players for engaging with all aspects of the web application. Users will be able to see their incomplete achievements, which will give them something to aspire to and increase their drive to continue engaging with the game.
 
 \subsection{Share}
-As discussed in the Literature Review, the social aspect of a game is highly beneficial for user retention. The ‘emoji grid’ was highly successful for the original Wordle game, as this relates much more to user acquisition than user retention and is, therefore, outside this paper's scope. This social aspect helps with the competition that can break out with a leaderboard, but having something more engaging between users may be helpful. An alternate solution is available to this web application as it is not constrained by the limit of one game per day that Wordle has placed upon itself. Instead of sending your result to another user, send the word you just finished playing. A ‘Share’ button will add this feature after your game to copy a clipboard link. You can share this link with another person, allowing them to start a new game that uses the same word you just played within your current game.
+As discussed in the Literature Review, the social aspect of a game is highly beneficial for user retention. The ‘emoji grid’ was highly successful for the original Wordle game, as this relates much more to user acquisition than user retention and is, therefore, outside this paper's scope. This social aspect helps with the competition that can break out with a leaderboard, but having something more engaging between users may be helpful. An alternate solution is available to this web application as it is not constrained by the limit of one game per day that Wordle has placed upon itself. Instead of sending your result to another user, send the word you just finished playing. A ‘Share’ button will add this feature to copy a clipboard link after your game. You can share this link with another person, allowing them to start a new game that uses the same word you just played within your current game.
 
 \subsection{WordleN}
 Increased functionality also benefits user retention. The apparent expansion to Wordle is an increased word length. While this does come with complications and some changes to the rules, such as an increased number of guesses, it is also imperative to have functionality with all the other components I have described.
@@ -54,7 +54,7 @@ Additionally, non-functional requirements such as performance, security, and usa
 
 Documenting these functional and non-functional requirements is paramount as it establishes a mutual agreement between the developers and stakeholders. This clarity facilitates smoother development, reduces the risk of misunderstandings, and ensures that the final product aligns with the stakeholders' expectations. As development progresses, all stakeholders will continually review and refine these requirements to adapt to evolving needs or insights.
 
-
+\clearpage
 \subsection{Functional Requirements}
 \begin{tabularx}{\textwidth}{|l|X|c|}
 \hline
@@ -74,12 +74,10 @@ Documenting these functional and non-functional requirements is paramount as it 
 
 \hline
 \endlastfoot
-
-Wordle & Have a load time of less than 500ms & M \\
+\hline
+\textbf{Type} & \textbf{Requirement} & \textbf{Importance} \\
 \hline
 Wordle & Let a user guess a five-letter word & M \\
-\hline
-Wordle & Have the guess parsed in less than 500ms & M \\
 \hline
 Wordle & Have the Keyboard change each letter to the correct state & M \\
 \hline
@@ -89,52 +87,63 @@ Wordle & Have the end game modal box show after a loss/win & S \\
 \hline
 Wordle & Have the game saved after each finished game & S \\
 \hline
+Wordle & Have words be checked against a comprehensive English dictionary & S \\
+\hline
 Achievements & Be updated after each game & M \\
 \hline
 Achievements & Have the page display the correct achievements for each user & M \\
 \hline
+Achievements & Have an option to suggest achievements & C \\
+\hline
+Keyboard & Layout should match the qwerty layout & S \\
+\hline
 Achievements & Have the user only receive the achievement when they have completed the task & M \\
-\hline
-Achievements & The achievement system should scale to accommodate growing users and achievements without performance degradation & M \\
-\hline
-Achievements & Receive a pop-up that notifies the user when they have been awarded an achievement & M \\
 \hline
 Achievements & Ensure users only have their own achievements displayed & M \\
 \hline
 Achievements & If new achievements are released, progress is backdated from the database & M \\
 \hline
-Achievements & Optimize the system to minimize delays in unlocking and notification delivery & S \\
-\hline
-Achievements & Have an option to suggest achievements & C \\
+Achievements & Receive a pop-up that notifies the user when they have been awarded an achievement & S \\
 \hline
 Leaderboards & Have accurate information on the score of each user & M \\
 \hline
-Leaderboards & Load the leaderboard in under 500ms & M \\
+Leaderboards & Contain the score and rank of all users & M \\
 \hline
-Leaderboards & Contain the score, average time, and rank of all users & M \\
+Leaderboards & Should split leaderboards for each game mode & S \\
+\hline
+Leaderboards & Add average time to the leaderboard as a tiebreaker for users with the same average score & C \\
 \hline
 Share & Add a link to a clipboard containing the UUID of the shared game & M \\
 \hline
 Share & When the link is used it takes a user to Wordle with the correct answer & M \\
 \hline
-Share & Must not add load time to the Wordle webpage & M \\
-\hline
 \end{tabularx}
+
 
 \subsection{Non-Functional Requirements}
 \begin{tabularx}{\textwidth}{|l|X|c|}
 \hline
 \textbf{ID} & \textbf{Requirement} & \textbf{Importance} \\
 \hline
-NFR 1 & Ensure all pages load within 1 second under normal conditions. & M \\
+NFR 1 & Have the guess parsed in less than 500ms & M \\
 \hline
-NFR 1.1 & Handle up to 10 concurrent transactions per second during peak usage without noticeable lag. & M \\
+NFR 1.1 & Have a load time of less than 500ms & M \\
 \hline
-NFR 1.2 & Achievements should be updated and visible to the user within 2 seconds of being earned. & M \\
+NFR 1.2 & Ensure all pages load within 1 second under normal conditions. & M \\
 \hline
-NFR 1.3 & The app should be optimized to run efficiently on devices with limited resources (e.g., older smartphones). & M \\
+NFR 1.3 & Handle up to 10 concurrent transactions per second during peak usage without noticeable lag. & M \\
 \hline
-NFR 2 & Sensitive data, such as user credentials, should be encrypted using JWT. & M \\
+NFR 1.4 & Achievements should be updated and visible to the user within 2 seconds of being earned. & M \\
+\hline
+NFR 1.5 & Load the leaderboard in under 500ms & M \\
+\hline
+NFR 1.6 & Optimize the system to minimize delays in unlocking and notification delivery & S \\
+\hline
+NFR 1.7 & Have the app be optimized to run efficiently on devices with limited resources (e.g., older smartphones). & S \\
+\hline
+NFR 1.8 & Not add load time to the Wordle webpage & S \\
+\hline
+NFR 2 & Have sensitive data, such as user credentials, be encrypted using JWT. & M \\
 \hline
 NFR 2.1 & Implement basic password protection for user accounts & M \\
 \hline
@@ -146,15 +155,17 @@ NFR 3.1 & Be accessible to all users, supporting basic accessibility features li
 \hline
 NFR 3.2 & Ensure the app is fully functional on Android and iOS devices, with a responsive design for various screen sizes. & S \\
 \hline
-NFR 4 & The app aims for an uptime of 99 percent, recognizing the smaller user base and the reduced need for high availability. & S \\
-\hline
-NFR 4.1 & The app should handle errors gracefully, displaying user-friendly messages and logging errors for later review. & M \\
+NFR 4.1 & Handle errors gracefully, displaying user-friendly messages and logging errors for later review. & M \\
 \hline
 NFR 4.2 & The app’s codebase is simple and easy to maintain. & M \\
 \hline
 NFR 4.3 & Updates to the app be easily deployed with minimal downtime and disruption to the user experience. & M \\
 \hline
 NFR 4.4 & Implement basic logging for significant actions and errors, with logs retained for 30 days. & M \\
+\hline
+NFR 4.5 & The app aims for an uptime of 99 percent, recognizing the smaller user base and the reduced need for high availability. & S \\
+\hline
+NFR 4.6 & The achievement system scales to accommodate growing users and achievements without performance degradation & S \\
 \hline
 NFR 5 & The app should be hosted on a cost-effective platform suitable for the expected low traffic and resource usage level. & M \\
 \hline
